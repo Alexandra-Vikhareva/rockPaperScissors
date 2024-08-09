@@ -1,59 +1,56 @@
 function getComputerChoice() {
-    let options = ['камень', 'ножницы', 'бумага'];
+    let options = ['rock', 'scissors', 'paper'];
     return options[Math.floor(Math.random() * 3)]
-}
+};
 
-function getHumanChoice() {
-    let answer
-    while (1) {
-        answer = prompt('Выберите "камень", "ножницы" или "бумагу"');
-        answer = answer.toLowerCase().trim();
-        if (answer === "камень" || answer ===  "ножницы" || answer === "бумага") {
-            break
-        }
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        resTxt.textContent = `It's a tie! You both choose ${humanChoice}.`;
     }
-    return answer
-}
-
-function playGame() {
-
-    function playRound(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) {
-            console.log(`Ничья! Вы и компьютер выбросили ${humanChoice}.`);
-            humanScore += 1;
-            computerScore += 1;
-        }
-        else if (humanChoice === 'камень' && computerChoice === 'ножницы'
-                || humanChoice === 'ножницы' && computerChoice === 'бумага'
-                || humanChoice === 'бумага' && computerChoice === 'камень' ) {
-                    console.log(`Вы победили! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} бьёт ${computerChoice}.`);
-                    humanScore += 1;
-                }
-        else {
-            console.log(`Вы проиграли! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} бьёт ${humanChoice}.`);
-                computerScore += 1;
-        };
-    }; 
-
-    let humanScore = 0,
-        computerScore = 0;
-
-    for (let i = 0; i < 5; i++){
-        let humanChoice = getHumanChoice(),
-            computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
-
-    console.log('Игра окончена!');
-    if (humanScore == computerScore) {
-        console.log('Ничья! Спасибо за Игру!');
-    }
-    else if (humanScore > computerScore) {
-        console.log('Вы победили! Поздравляем!');
-    }
+    else if (humanChoice === 'rock' && computerChoice === 'scissors'
+            || humanChoice === 'scissors' && computerChoice === 'paper'
+            || humanChoice === 'paper' && computerChoice === 'rock' ) {
+                humanScore += 1;
+                resTxt.textContent = `You win! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} beats ${computerChoice}.`;
+                hScore.textContent = humanScore;
+            }
     else {
-        console.log('Вы проиграли! Попробуйте снова!');
-    }
-}
+        computerScore += 1;
+        resTxt.textContent = `You lose! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} beats ${humanChoice}.`;
+        cScore.textContent = computerScore;
+    };
 
-playGame();
+    if (isOver()){
+        if (humanScore > computerScore) {
+            alert(`You Win!`)
+        }
+        else {
+            alert(`You Lose!`)
+        };
+
+        humanScore = 0;
+        hScore.textContent = humanScore;
+        computerScore = 0;
+        cScore.textContent = computerScore;
+        resTxt.textContent = `To win you need to score 5 points.`;
+    };
+}; 
+
+function isOver(){
+    return (humanScore == 5 || computerScore == 5)
+    };
+    
+const resTxt = document.querySelector('#text');
+const rockBtn = document.querySelector('.rock.btn');
+const paperBtn = document.querySelector('.paper.btn');
+const scissorsBtn = document.querySelector('.scissors.btn');
+const hScore = document.querySelector('.human.score');
+const cScore = document.querySelector('.computer.score')
+
+rockBtn.addEventListener('click', () => {playRound('rock', getComputerChoice())});
+paperBtn.addEventListener('click', () => {playRound('paper', getComputerChoice())});
+scissorsBtn.addEventListener('click', () => {playRound('scissors', getComputerChoice())});
+
+let humanScore = 0,
+    computerScore = 0;
