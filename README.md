@@ -36,11 +36,11 @@
 - При одинаковом выборе - ничья
 
 ## 📁 **Структура проекта**
-rock-paper-scissors/
-├── index.html          # Основной HTML файл
-├── style.css           # Стили приложения
-├── script.js           # Игровая логика на JavaScript
-└── README.md           # Документация
+rock-paper-scissors/ \
+├── index.html          # Основной HTML файл \
+├── style.css           # Стили приложения \
+├── script.js           # Игровая логика на JavaScript \
+└── README.md           # Документация \
 
 📄 **Лицензия**
 Этот проект создан в образовательных целях в рамках прохождения курса [The Odin Project](https://www.theodinproject.com/about). Свободное использование и модификация приветствуются.
