@@ -40,7 +40,7 @@ rock-paper-scissors/ \
 ├── index.html          # Основной HTML файл \
 ├── style.css           # Стили приложения \
 ├── script.js           # Игровая логика на JavaScript \
-└── README.md           # Документация \
+└── README.md           # Документация 
 
-📄 **Лицензия**
+## 📄 **Лицензия**
 Этот проект создан в образовательных целях в рамках прохождения курса [The Odin Project](https://www.theodinproject.com/about). Свободное использование и модификация приветствуются.
